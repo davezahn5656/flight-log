@@ -3,9 +3,26 @@
     "id": "flight-2026-09-05",
     "date": "2026-09-05",
     "clips": [
-      { "label": "Hi-res", "videoId": "50_VUum5qNc" },
-      { "label": "Controller", "videoId": "E3q3FVHYNBA" }
+      {
+        "label": "Hi-res",
+        "videoId": "50_VUum5qNc"
+      },
+      {
+        "label": "Controller",
+        "videoId": "E3q3FVHYNBA"
+      }
     ],
     "notes": "Write your comments about this flight here."
+  },
+  {
+    "id": "flight-2026-07-01-1788744987634",
+    "date": "2026-07-01",
+    "clips": [
+      {
+        "label": "Hi-res",
+        "videoId": "LMgSubE6Zhk"
+      }
+    ],
+    "notes": "Twilight Flight over Stoney Creek  Chesapeake Bay"
   }
 ]
