@@ -1,0 +1,11 @@
+[
+  {
+    "id": "flight-2026-09-05",
+    "date": "2026-09-05",
+    "clips": [
+      { "label": "Hi-res", "videoId": "50_VUum5qNc" },
+      { "label": "Controller", "videoId": "E3q3FVHYNBA" }
+    ],
+    "notes": "Write your comments about this flight here."
+  }
+]

@@ -90,6 +90,7 @@ svg.leaflet-zoom-animated{will-change:transform}
     --text-dim: #64707b;
     --accent: #c98a3e;
     --accent-dim: rgba(201, 138, 62, 0.14);
+    --danger: #c0524a;
   }
 
   * { box-sizing: border-box; }
@@ -102,17 +103,9 @@ svg.leaflet-zoom-animated{will-change:transform}
     line-height: 1.55;
   }
 
-  .mono {
-    font-family: ui-monospace, "SFMono-Regular", "Consolas", "Menlo", monospace;
-  }
+  .mono { font-family: ui-monospace, "SFMono-Regular", "Consolas", "Menlo", monospace; }
 
-  .layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    min-height: 100vh;
-  }
-
-  /* ---------- Sidebar ---------- */
+  .layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
 
   .sidebar {
     border-right: 1px solid var(--line);
@@ -124,10 +117,25 @@ svg.leaflet-zoom-animated{will-change:transform}
     overflow-y: auto;
   }
 
+  .sidebar-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
   .sidebar-head h1 { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.02em; margin: 0 0 3px; }
   .sidebar-head .count { color: var(--text-dim); font-size: 0.8rem; margin: 0 0 18px; }
 
-  .flightpath { width: 100%; height: 10px; margin-bottom: 20px; }
+  .gear-btn {
+    background: none; border: 1px solid var(--line); border-radius: 4px;
+    color: var(--text-dim); font-size: 0.9rem; padding: 3px 7px; cursor: pointer;
+  }
+  .gear-btn:hover { color: var(--text); border-color: var(--text-dim); }
+
+  .add-btn {
+    display: block; width: 100%; text-align: center;
+    background: var(--accent); color: #fff; border: none; border-radius: 4px;
+    padding: 9px 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    margin-bottom: 18px;
+  }
+  .add-btn:hover { background: #b87a34; }
+
+  .flightpath { width: 100%; height: 10px; margin-bottom: 16px; }
 
   .search-wrap { margin-bottom: 20px; }
   .search-wrap input {
@@ -155,8 +163,6 @@ svg.leaflet-zoom-animated{will-change:transform}
 
   .mobile-nav { display: none; }
 
-  /* ---------- Main ---------- */
-
   main { padding: 44px 44px 96px; max-width: 900px; }
 
   .month-divider {
@@ -169,11 +175,8 @@ svg.leaflet-zoom-animated{will-change:transform}
     scroll-margin-top: 24px;
   }
   .entry:last-child { border-bottom: none; }
-  .entry.placeholder { opacity: 0.7; }
 
-  .entry-head {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
-  }
+  .entry-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
 
   .entry-date-input {
     background: transparent; border: none; border-bottom: 1px dashed var(--line);
@@ -185,75 +188,38 @@ svg.leaflet-zoom-animated{will-change:transform}
 
   .edit-hint { font-size: 0.72rem; color: var(--text-dim); }
 
-  .placeholder-tag {
-    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--text-dim); border: 1px solid var(--line); padding: 2px 8px; border-radius: 20px;
+  .delete-btn {
+    margin-left: auto; background: none; border: 1px solid var(--line); color: var(--text-dim);
+    border-radius: 20px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer;
   }
+  .delete-btn:hover { border-color: var(--danger); color: var(--danger); }
 
   .map-btn {
-    margin-left: auto;
-    font-size: 0.78rem;
-    color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid var(--accent);
-    padding: 4px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
-    cursor: pointer;
+    font-size: 0.78rem; color: var(--accent); background: var(--accent-dim);
+    border: 1px solid var(--accent); padding: 4px 10px; border-radius: 20px;
+    white-space: nowrap; cursor: pointer;
   }
   .map-btn:hover { background: rgba(201, 138, 62, 0.24); }
   .map-btn input[type="file"] { display: none; }
 
-  .map-status {
-    font-size: 0.76rem;
-    color: var(--text-dim);
-    margin: 4px 0 0;
-  }
+  .map-status { font-size: 0.76rem; color: var(--text-dim); margin: 4px 0 0; }
 
   .flight-map {
-    display: none;
-    width: 100%;
-    height: 320px;
-    margin: 12px 0 18px;
-    border: 1px solid var(--line);
-    border-radius: 4px;
+    display: none; width: 100%; height: 320px; margin: 12px 0 18px;
+    border: 1px solid var(--line); border-radius: 4px;
   }
 
-  .clip-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 18px;
-  }
-
-  .clip {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .clip-label {
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    text-align: center;
-  }
+  .clip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+  .clip { display: flex; flex-direction: column; gap: 5px; }
+  .clip-label { font-size: 0.68rem; color: var(--text-dim); text-align: center; }
 
   .thumb {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--panel);
-    transition: border-color 0.15s, transform 0.15s;
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    cursor: pointer; background: var(--panel); transition: border-color 0.15s, transform 0.15s;
   }
   .thumb:hover { border-color: #4a5562; transform: translateY(-2px); }
-
-  .thumb img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .thumb .play-icon {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -278,26 +244,54 @@ svg.leaflet-zoom-animated{will-change:transform}
     display: block; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 5px;
     text-transform: uppercase; letter-spacing: 0.05em;
   }
-  .notes p { margin: 0; }
+  .notes p { margin: 0; white-space: pre-wrap; }
 
   footer { color: var(--text-dim); font-size: 0.82rem; padding: 0 44px 48px; }
 
-  /* ---------- Lightbox ---------- */
-
   .lightbox {
-    display: none;
-    position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
     z-index: 50; align-items: center; justify-content: center; padding: 40px;
   }
   .lightbox.open { display: flex; }
-  .lightbox-inner {
-    width: 100%; max-width: 900px; aspect-ratio: 16 / 9; position: relative;
-  }
+  .lightbox-inner { width: 100%; max-width: 900px; aspect-ratio: 16 / 9; position: relative; }
   .lightbox-inner iframe { width: 100%; height: 100%; border: 0; }
   .lightbox-close {
     position: absolute; top: -36px; right: 0; color: var(--text);
     background: none; border: none; font-size: 1.4rem; cursor: pointer; line-height: 1;
   }
+
+  /* ---------- Modal (Add flight / Settings) ---------- */
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(20,25,30,0.5);
+    z-index: 60; align-items: flex-start; justify-content: center; padding: 60px 20px; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--panel); border-radius: 6px; padding: 24px; width: 100%; max-width: 480px;
+  }
+  .modal h2 { margin: 0 0 6px; font-size: 1.15rem; }
+  .modal .modal-sub { color: var(--text-dim); font-size: 0.85rem; margin: 0 0 18px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px; }
+  .field input, .field textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+    padding: 8px 10px; font-size: 0.9rem; color: var(--text); font-family: inherit;
+  }
+  .field textarea { min-height: 70px; resize: vertical; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
+  .btn {
+    padding: 8px 16px; border-radius: 4px; font-size: 0.88rem; cursor: pointer; border: 1px solid var(--line);
+    background: var(--panel); color: var(--text);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  .btn.primary:hover { background: #b87a34; }
+  .btn:hover { background: var(--panel-hover); }
+  .modal-status { font-size: 0.82rem; margin-top: 12px; min-height: 1.2em; }
+  .modal-status.error { color: var(--danger); }
+  .modal-status.ok { color: #3a8a4d; }
+  .modal a.help-link { color: var(--accent); }
 
   @media (max-width: 720px) {
     .layout { display: block; }
@@ -307,8 +301,9 @@ svg.leaflet-zoom-animated{will-change:transform}
       background: var(--bg); border-bottom: 1px solid var(--line); padding: 14px 20px;
     }
     .mobile-nav h1 { font-size: 1.05rem; margin: 0 0 10px; }
+    .mobile-nav .row { display: flex; gap: 8px; }
     .mobile-nav select {
-      width: 100%; background: var(--panel); color: var(--text); border: 1px solid var(--line);
+      flex: 1; background: var(--panel); color: var(--text); border: 1px solid var(--line);
       padding: 8px 10px; font-size: 0.85rem; border-radius: 3px;
     }
     main { padding: 28px 20px 72px; max-width: none; }
@@ -322,19 +317,28 @@ svg.leaflet-zoom-animated{will-change:transform}
 
 <div class="mobile-nav">
   <h1 class="mono">Flight Log</h1>
-  <select id="jumpSelect" onchange="location.hash=this.value;"></select>
+  <div class="row">
+    <select id="jumpSelect" onchange="location.hash=this.value;"></select>
+    <button class="add-btn" style="width:auto; margin:0; padding:8px 14px;" onclick="openAddModal()">+ Add</button>
+    <button class="gear-btn" onclick="openSettingsModal()">⚙</button>
+  </div>
 </div>
 
 <div class="layout">
   <nav class="sidebar">
     <div class="sidebar-head">
-      <h1 class="mono">Flight Log</h1>
-      <p class="count" id="entryCount"></p>
+      <div>
+        <h1 class="mono">Flight Log</h1>
+        <p class="count" id="entryCount"></p>
+      </div>
+      <button class="gear-btn" onclick="openSettingsModal()" title="GitHub token settings">⚙</button>
     </div>
 
     <svg class="flightpath" viewBox="0 0 200 10" preserveAspectRatio="none">
       <line x1="0" y1="5" x2="200" y2="5" stroke="#c3cdd6" stroke-width="1" stroke-dasharray="1,5" stroke-linecap="round"/>
     </svg>
+
+    <button class="add-btn" onclick="openAddModal()">+ Add flight</button>
 
     <div class="search-wrap">
       <input type="text" id="searchInput" placeholder="Filter by date or note…">
@@ -356,56 +360,75 @@ svg.leaflet-zoom-animated{will-change:transform}
   </div>
 </div>
 
+<!-- Add flight modal -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h2>Add a flight</h2>
+    <p class="modal-sub">Paste video links from YouTube. Leave any blank.</p>
+
+    <div class="field">
+      <label>Date</label>
+      <input type="date" id="addDate">
+    </div>
+    <div class="field">
+      <label>Hi-res camera link</label>
+      <input type="text" id="addHiRes" placeholder="https://youtu.be/...">
+    </div>
+    <div class="field">
+      <label>Controller view link</label>
+      <input type="text" id="addController" placeholder="https://youtu.be/...">
+    </div>
+    <div class="field">
+      <label>Extra clip link (optional)</label>
+      <input type="text" id="addExtra1" placeholder="https://youtu.be/...">
+    </div>
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="addNotes" placeholder="Comments about this flight"></textarea>
+    </div>
+
+    <p class="modal-status" id="addStatus"></p>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="closeAddModal()">Cancel</button>
+      <button class="btn primary" onclick="submitAddFlight()">Save flight</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings modal -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <h2>GitHub access</h2>
+    <p class="modal-sub">
+      A repo-scoped token lets this page save new flights directly to GitHub.
+      <a class="help-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one here</a>
+      — grant it "Contents: Read and write" on just this repo.
+    </p>
+    <div class="field">
+      <label>Token</label>
+      <input type="password" id="tokenInput" placeholder="github_pat_...">
+    </div>
+    <p class="modal-status" id="settingsStatus"></p>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeSettingsModal()">Cancel</button>
+      <button class="btn primary" onclick="saveToken()">Save token</button>
+    </div>
+  </div>
+</div>
+
 <script>
   /* ============================================================
-     FLIGHT DATA
-     Each entry needs a permanent "id" (never change this once
-     set — it's how edited dates are remembered) and a "date"
-     (ISO format YYYY-MM-DD, just a starting value — you can edit
-     the date directly on the page afterward).
-
-     "clips" holds up to 4 videos: {label, videoId}. videoId is
-     the part after youtu.be/ in the video's link. Leave clips
-     out or use fewer than 4 — empty slots just show as "add clip".
-
-     Add a new flight by copying one of these objects and giving
-     it a new unique id.
+     CONFIG — this page reads/writes entries to data.json in this
+     same GitHub repo via the GitHub API.
      ============================================================ */
-  const entries = [
-    {
-      id: "flight-2026-09-05",
-      date: "2026-09-05",
-      clips: [
-        { label: "Hi-res", videoId: "50_VUum5qNc" },
-        { label: "Controller", videoId: "E3q3FVHYNBA" }
-      ],
-      notes: "Write your comments about this flight here."
-    },
-    {
-      id: "flight-placeholder-1",
-      date: "2026-09-12",
-      clips: [],
-      placeholder: true,
-      notes: "Placeholder for your next flight. Edit the date above, replace the clip slots with real videoIds in the code, and rewrite this note — or delete this whole entry."
-    }
-  ];
+  const REPO = "davezahn5656/flight-log";
+  const DATA_PATH = "data.json";
+  const BRANCH = "main";
+  const TOKEN_KEY = "flightlog-gh-token";
 
-  const DATE_KEY = id => `flightlog-date-${id}`;
-
-  function getDate(entry) {
-    try {
-      return localStorage.getItem(DATE_KEY(entry.id)) || entry.date;
-    } catch (e) {
-      return entry.date;
-    }
-  }
-
-  function setDate(entry, newDate) {
-    try {
-      localStorage.setItem(DATE_KEY(entry.id), newDate);
-    } catch (e) { /* storage unavailable, edit won't persist */ }
-    render();
-  }
+  let entries = [];
+  let currentSha = null;
 
   const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -413,12 +436,10 @@ svg.leaflet-zoom-animated{will-change:transform}
     const [y, m, d] = iso.split("-").map(Number);
     return new Date(y, m - 1, d);
   }
-
   function displayLabel(iso) {
     const dt = parseDate(iso);
     return `${monthNames[dt.getMonth()].slice(0,3)} ${dt.getDate()}, ${dt.getFullYear()}`;
   }
-
   function monthKey(iso) {
     const dt = parseDate(iso);
     return `${monthNames[dt.getMonth()]} ${dt.getFullYear()}`;
@@ -427,9 +448,7 @@ svg.leaflet-zoom-animated{will-change:transform}
   const playIcon = `<svg viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20"/></svg>`;
 
   function thumbHtml(clip) {
-    if (!clip) {
-      return `<div class="thumb empty">+ add clip</div>`;
-    }
+    if (!clip) return `<div class="thumb empty">+ add clip</div>`;
     return `<div class="thumb" onclick="openLightbox('${clip.videoId}')">
       <img src="https://img.youtube.com/vi/${clip.videoId}/mqdefault.jpg" alt="${clip.label} thumbnail" loading="lazy">
       <div class="play-icon">${playIcon}</div>
@@ -440,21 +459,19 @@ svg.leaflet-zoom-animated{will-change:transform}
     document.getElementById("lightboxFrame").src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
     document.getElementById("lightbox").classList.add("open");
   }
-
   function closeLightbox() {
     document.getElementById("lightbox").classList.remove("open");
     document.getElementById("lightboxFrame").src = "";
   }
-
   document.getElementById("lightbox").addEventListener("click", (e) => {
     if (e.target.id === "lightbox") closeLightbox();
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
+    if (e.key === "Escape") { closeLightbox(); closeAddModal(); closeSettingsModal(); }
   });
 
   function render() {
-    const withDates = entries.map(e => ({ entry: e, date: getDate(e) }));
+    const withDates = entries.map(e => ({ entry: e, date: e.date }));
     withDates.sort((a, b) => b.date.localeCompare(a.date));
 
     const navGroups = document.getElementById("navGroups");
@@ -467,9 +484,8 @@ svg.leaflet-zoom-animated{will-change:transform}
     entriesEl.innerHTML = "";
     jumpSelect.innerHTML = "";
 
-    const realCount = entries.filter(e => !e.placeholder).length;
-    entryCountEl.textContent = `${realCount} logged flight${realCount === 1 ? "" : "s"}`;
-    footerEl.textContent = `Flight Log — ${realCount} ${realCount === 1 ? "entry" : "entries"}`;
+    entryCountEl.textContent = `${entries.length} logged flight${entries.length === 1 ? "" : "s"}`;
+    footerEl.textContent = `Flight Log — ${entries.length} ${entries.length === 1 ? "entry" : "entries"}`;
 
     let lastMonth = null;
     let mainLastMonth = null;
@@ -483,7 +499,7 @@ svg.leaflet-zoom-animated{will-change:transform}
         lastMonth = mKey;
       }
       navGroups.insertAdjacentHTML("beforeend",
-        `<a href="#${entry.id}" class="nav-link" data-date="${label.toLowerCase()}" data-notes="${entry.notes.toLowerCase().replace(/"/g,'&quot;')}">${label}${entry.placeholder ? " (placeholder)" : ""}</a>`);
+        `<a href="#${entry.id}" class="nav-link" data-date="${label.toLowerCase()}" data-notes="${(entry.notes||"").toLowerCase().replace(/"/g,'&quot;')}">${label}</a>`);
 
       jumpSelect.insertAdjacentHTML("beforeend", `<option value="${entry.id}">${label}</option>`);
 
@@ -495,15 +511,15 @@ svg.leaflet-zoom-animated{will-change:transform}
       const clipSlots = [0, 1, 2, 3].map(i => entry.clips[i] || null);
 
       entriesEl.insertAdjacentHTML("beforeend", `
-        <div class="entry ${entry.placeholder ? "placeholder" : ""}" id="${entry.id}">
+        <div class="entry" id="${entry.id}">
           <div class="entry-head">
             <input class="entry-date-input mono" type="date" value="${date}" data-id="${entry.id}">
             <span class="edit-hint">click to edit date</span>
-            ${entry.placeholder ? `<span class="placeholder-tag">placeholder</span>` : ""}
             <label class="map-btn">
               Load flight path (.srt)
               <input type="file" accept=".srt" onchange="handleSrtUpload(this, '${entry.id}')">
             </label>
+            <button class="delete-btn" onclick="deleteFlight('${entry.id}')">Delete</button>
           </div>
           <p class="map-status" id="mapstatus-${entry.id}"></p>
           <div class="flight-map" id="map-${entry.id}"></div>
@@ -517,21 +533,22 @@ svg.leaflet-zoom-animated{will-change:transform}
           </div>
           <div class="notes">
             <span class="notes-label">Notes</span>
-            <p>${entry.notes}</p>
+            <p>${entry.notes || ""}</p>
           </div>
         </div>
       `);
     });
 
-    // Wire up date inputs
     entriesEl.querySelectorAll(".entry-date-input").forEach(input => {
       input.addEventListener("change", () => {
         const entry = entries.find(e => e.id === input.dataset.id);
-        if (entry) setDate(entry, input.value);
+        if (entry) {
+          entry.date = input.value;
+          saveEntries("Update flight date");
+        }
       });
     });
 
-    // Active link highlight on scroll
     const links = Array.from(navGroups.querySelectorAll(".nav-link"));
     const sections = withDates.map(w => document.getElementById(w.entry.id));
 
@@ -548,7 +565,6 @@ svg.leaflet-zoom-animated{will-change:transform}
     sections.forEach(s => s && observer.observe(s));
     if (links[0]) links[0].classList.add("active");
 
-    // Search filter re-bind
     const searchInput = document.getElementById("searchInput");
     const noResults = document.getElementById("noResults");
 
@@ -571,24 +587,184 @@ svg.leaflet-zoom-animated{will-change:transform}
       });
       noResults.style.display = anyVisible ? "none" : "block";
     }
-
     searchInput.oninput = applyFilter;
     applyFilter();
   }
 
-  render();
+  /* ---------- Load data.json ---------- */
+
+  async function loadEntries() {
+    try {
+      const res = await fetch(DATA_PATH + "?t=" + Date.now());
+      entries = await res.json();
+    } catch (e) {
+      entries = [];
+    }
+    render();
+  }
+  loadEntries();
+
+  /* ---------- GitHub API read/write ---------- */
+
+  function getToken() {
+    try { return localStorage.getItem(TOKEN_KEY); } catch (e) { return null; }
+  }
+  function setToken(t) {
+    try { localStorage.setItem(TOKEN_KEY, t); } catch (e) {}
+  }
+
+  function utf8ToB64(str) {
+    const bytes = new TextEncoder().encode(str);
+    let binary = "";
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    return btoa(binary);
+  }
+  function b64ToUtf8(b64) {
+    const binary = atob(b64.replace(/\n/g, ""));
+    const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+
+  async function fetchCurrentFile() {
+    const token = getToken();
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${DATA_PATH}?ref=${BRANCH}`, {
+      headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" }
+    });
+    if (!res.ok) throw new Error(res.status === 401 ? "Token rejected — check it's correct and hasn't expired." : `GitHub error (${res.status})`);
+    const data = await res.json();
+    return { sha: data.sha, content: JSON.parse(b64ToUtf8(data.content)) };
+  }
+
+  async function saveEntries(message) {
+    const token = getToken();
+    if (!token) { openSettingsModal(); return { ok: false, error: "No token saved yet." }; }
+    try {
+      const current = await fetchCurrentFile();
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${DATA_PATH}`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" },
+        body: JSON.stringify({
+          message: message || "Update flight log",
+          content: utf8ToB64(JSON.stringify(entries, null, 2)),
+          sha: current.sha,
+          branch: BRANCH
+        })
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || `GitHub error (${res.status})`);
+      }
+      render();
+      return { ok: true };
+    } catch (e) {
+      render();
+      return { ok: false, error: e.message };
+    }
+  }
+
+  async function deleteFlight(id) {
+    if (!confirm("Delete this flight? This can't be undone.")) return;
+    entries = entries.filter(e => e.id !== id);
+    const result = await saveEntries("Delete flight");
+    if (!result.ok) alert("Couldn't delete: " + result.error);
+  }
+
+  /* ---------- Add flight modal ---------- */
+
+  function extractVideoId(url) {
+    if (!url) return null;
+    url = url.trim();
+    let m = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+    if (m) return m[1];
+    m = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+    if (m) return m[1];
+    m = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{6,})/);
+    if (m) return m[1];
+    if (/^[a-zA-Z0-9_-]{6,}$/.test(url)) return url; // pasted bare ID
+    return null;
+  }
+
+  function openAddModal() {
+    document.getElementById("addDate").value = new Date().toISOString().slice(0, 10);
+    document.getElementById("addHiRes").value = "";
+    document.getElementById("addController").value = "";
+    document.getElementById("addExtra1").value = "";
+    document.getElementById("addNotes").value = "";
+    document.getElementById("addStatus").textContent = "";
+    document.getElementById("addStatus").className = "modal-status";
+    document.getElementById("addModal").classList.add("open");
+  }
+  function closeAddModal() {
+    document.getElementById("addModal").classList.remove("open");
+  }
+
+  async function submitAddFlight() {
+    const statusEl = document.getElementById("addStatus");
+    if (!getToken()) { closeAddModal(); openSettingsModal(); return; }
+
+    const date = document.getElementById("addDate").value;
+    if (!date) { statusEl.textContent = "Pick a date."; statusEl.className = "modal-status error"; return; }
+
+    const clips = [];
+    const hiRes = extractVideoId(document.getElementById("addHiRes").value);
+    const ctrl = extractVideoId(document.getElementById("addController").value);
+    const extra = extractVideoId(document.getElementById("addExtra1").value);
+    if (hiRes) clips.push({ label: "Hi-res", videoId: hiRes });
+    if (ctrl) clips.push({ label: "Controller", videoId: ctrl });
+    if (extra) clips.push({ label: "Clip", videoId: extra });
+
+    if (!clips.length) { statusEl.textContent = "Add at least one valid video link."; statusEl.className = "modal-status error"; return; }
+
+    const notes = document.getElementById("addNotes").value.trim();
+    const newEntry = {
+      id: `flight-${date}-${Date.now()}`,
+      date, clips,
+      notes: notes || "No notes yet."
+    };
+
+    statusEl.textContent = "Saving to GitHub…";
+    statusEl.className = "modal-status";
+
+    entries.push(newEntry);
+    const result = await saveEntries(`Add flight ${date}`);
+
+    if (result.ok) {
+      statusEl.textContent = "Saved.";
+      statusEl.className = "modal-status ok";
+      setTimeout(closeAddModal, 700);
+    } else {
+      entries = entries.filter(e => e.id !== newEntry.id);
+      statusEl.textContent = result.error;
+      statusEl.className = "modal-status error";
+    }
+  }
+
+  /* ---------- Settings modal ---------- */
+
+  function openSettingsModal() {
+    document.getElementById("tokenInput").value = getToken() || "";
+    document.getElementById("settingsStatus").textContent = "";
+    document.getElementById("settingsModal").classList.add("open");
+  }
+  function closeSettingsModal() {
+    document.getElementById("settingsModal").classList.remove("open");
+  }
+  function saveToken() {
+    const val = document.getElementById("tokenInput").value.trim();
+    const statusEl = document.getElementById("settingsStatus");
+    if (!val) { statusEl.textContent = "Paste a token first."; statusEl.className = "modal-status error"; return; }
+    setToken(val);
+    statusEl.textContent = "Saved in this browser.";
+    statusEl.className = "modal-status ok";
+    setTimeout(closeSettingsModal, 600);
+  }
 
   /* ---------- Flight path from SRT ---------- */
 
   function parseSrtGps(text) {
     const lat = [...text.matchAll(/latitude\s*:\s*([+-]?\d+\.?\d*)/gi)].map(m => parseFloat(m[1]));
     const lon = [...text.matchAll(/longitude\s*:\s*([+-]?\d+\.?\d*)/gi)].map(m => parseFloat(m[1]));
-
-    if (lat.length && lat.length === lon.length) {
-      return lat.map((la, i) => [la, lon[i]]);
-    }
-
-    // Fallback: older DJI format, GPS(lon, lat, alt)
+    if (lat.length && lat.length === lon.length) return lat.map((la, i) => [la, lon[i]]);
     const gps = [...text.matchAll(/GPS\(\s*([+-]?\d+\.?\d*)\s*,\s*([+-]?\d+\.?\d*)/gi)];
     return gps.map(m => [parseFloat(m[2]), parseFloat(m[1])]);
   }
@@ -597,27 +773,19 @@ svg.leaflet-zoom-animated{will-change:transform}
     const file = input.files[0];
     const statusEl = document.getElementById(`mapstatus-${entryId}`);
     if (!file) return;
-
     statusEl.textContent = "Reading file…";
-
     const reader = new FileReader();
     reader.onload = () => {
       const points = parseSrtGps(reader.result);
-      if (!points.length) {
-        statusEl.textContent = "No GPS data found in that file.";
-        return;
-      }
+      if (!points.length) { statusEl.textContent = "No GPS data found in that file."; return; }
       statusEl.textContent = `Loaded ${points.length} GPS points.`;
       drawFlightMap(entryId, points);
     };
-    reader.onerror = () => {
-      statusEl.textContent = "Couldn't read that file.";
-    };
+    reader.onerror = () => { statusEl.textContent = "Couldn't read that file."; };
     reader.readAsText(file);
   }
 
   function drawFlightMap(entryId, points) {
-    // keep the map responsive by capping the number of plotted points
     const maxPoints = 500;
     const step = Math.max(1, Math.ceil(points.length / maxPoints));
     const sampled = points.filter((_, i) => i % step === 0);
@@ -627,19 +795,13 @@ svg.leaflet-zoom-animated{will-change:transform}
     mapEl.innerHTML = "";
 
     const map = L.map(mapEl);
-
     L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-      maxZoom: 19,
-      attribution: "Tiles &copy; Esri"
+      maxZoom: 19, attribution: "Tiles &copy; Esri"
     }).addTo(map);
 
     const line = L.polyline(sampled, { color: "#c98a3e", weight: 3 }).addTo(map);
-
-    L.circleMarker(sampled[0], { radius: 6, color: "#5ec26a", fillColor: "#5ec26a", fillOpacity: 1 })
-      .addTo(map).bindTooltip("Start");
-    L.circleMarker(sampled[sampled.length - 1], { radius: 6, color: "#e05d5d", fillColor: "#e05d5d", fillOpacity: 1 })
-      .addTo(map).bindTooltip("End");
-
+    L.circleMarker(sampled[0], { radius: 6, color: "#5ec26a", fillColor: "#5ec26a", fillOpacity: 1 }).addTo(map).bindTooltip("Start");
+    L.circleMarker(sampled[sampled.length - 1], { radius: 6, color: "#e05d5d", fillColor: "#e05d5d", fillOpacity: 1 }).addTo(map).bindTooltip("End");
     map.fitBounds(line.getBounds(), { padding: [20, 20] });
   }
 </script>
